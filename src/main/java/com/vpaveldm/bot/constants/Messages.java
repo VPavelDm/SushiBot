@@ -1,0 +1,64 @@
+package com.vpaveldm.bot.constants;
+
+public class Messages {
+    public static String START = "/start";
+    public static String WELCOME = "Добрый вечерочек";
+    public static String CATEGORIES = "Категории товаров";
+    public static String BASKET = "Корзина";
+    public static String ON_CATEGORIES = "Сча нужно выбрать категорию";
+    public static String SUSHI = "Суши";
+    public static String DESSERTS = "Дессерты";
+    public static String ON_CATEGORY = "Сча нужно выбрать ингредиенты";
+    public static String AVOCADO = "Авокадо";
+    public static String GREEN_ONION = "Зеленый лук";
+    public static String SHRIMP = "Креветка";
+    public static String SALMON = "Лосось";
+    public static String SEAWEED = "Морские водоросли";
+    public static String CREAM_CHEESE= "Сливночный сыр";
+    public static String ACNE = "Угорь";
+    public static String BACON = "Бекон";
+    public static String BAT_ROE = "Икра летучей рыбы";
+    public static String SESAME = "Кунжут";
+    public static String SMOKED_SALMON = "Лосось копченный";
+    public static String SEA_BASS = "Морской окунь";
+    public static String TUNA = "Тунец";
+    public static String TUNA_FLAKES = "Хлопья тунца";
+    public static String ALL_INGREDIENTS = "Все ингредиенты";
+    public static String RESET_INGREDIENTS = "Удалить все ингредиенты";
+    public static String SORT_ORDER_SETTINGS = "Настроить сортировку товаров";
+    public static String FIND = "Найти";
+    public static String ON_SORT_ORDER = "А сейчас давайте настроим сортировку товаров";
+    public static String PRICE_UP = "Цена по возрастанию";
+    public static String PRICE_DOWN = "Цена по убыванию";
+    public static String NEWEST = "Сначала новые";
+    public static String POPULAR = "Сначала популярные";
+    public static String MORE = "Добавить";
+    public static String LESS = "Убрать";
+    public static String CHEESE = "Сыр";
+    public static String BANANA = "Банан";
+    public static String KIWI = "Киви";
+    public static String STRAWBERRY = "Клубника";
+    public static String HOME_SCREEN = "Вернуться в главное меню";
+    public static String HOME_SCREEN_MESSAGE = "Можете добавить в корзину товары, для этого "
+            + "выберите кнопку \""
+            + Messages.CATEGORIES
+            + "\" или оформите заказ, для этого нажмите кнопку \""
+            + Messages.BASKET + "\"";
+    public static String BASKET_MESSAGE = "Посмотрите на товары, убедившись, что вы не забыли ничего добавить, "
+            + "нажмите на кнопку \"Оформить заказ\"";
+    public static String MAKE_ORDER = "Оформить заказ";
+    public static String HELP = "Связаться с оператором";
+    public static String ENTER_ADDRESS = "Введите адрес, куда доставить товар";
+    public static String SEND_PHONE_NUMBER = "Предоставить номер телефона";
+    public static String HELP_MESSAGE = "Для того, чтобы связаться с Вами, нам нужен Ваш номер телефона. " +
+            "Нажмите, пожалуйста, на кнопку \"" + Messages.SEND_PHONE_NUMBER + "\"";
+    public static String PHONE_NUMBER_RECEIVED = "Оператор свяжется с Вами через несколько минут по телефону, который " +
+            "Вы предоставили";
+    public static String ADDRESS_ENTERED_MESSAGE = "Мы приняли Ваш заказ. Он будет доставлен в течение 1-2 часов " +
+            "по адресу: ";
+    public static String CARBONATED = "Газированные";
+    public static String NOT_CARBONATED = "Не газированные";
+    public static String JUICE = "Соки";
+    public static String DRINKS = "Напитки";
+    public static String TEA = "Чай";
+}
