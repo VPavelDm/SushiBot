@@ -2,18 +2,14 @@ package com.vpaveldm.bot.processor;
 
 import com.vpaveldm.bot.message.WelcomeMessage;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 @Component
-public class StartCommandProcessor implements ReplyKeyboardButtonProcessor {
+public class StartCommandProcessor implements KeyboardButtonProcessor {
     @Override
-    public boolean supports(Message message) {
-        if (!message.hasText()) {
-            return false;
-        }
-        return message.getText().equals("/start");
+    public boolean supports(String message) {
+        return message.equals("/start");
     }
 
     @Override

@@ -5,8 +5,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
-public interface ReplyKeyboardButtonProcessor {
-    boolean supports(Message message);
+public interface KeyboardButtonProcessor {
+    boolean supports(String message);
 
     void processMessage(AbsSender sender, Message message);
 

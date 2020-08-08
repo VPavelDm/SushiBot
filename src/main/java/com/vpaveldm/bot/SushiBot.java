@@ -1,10 +1,8 @@
 package com.vpaveldm.bot;
 
-import com.vpaveldm.bot.processor.InlineKeyboardButtonProcessor;
-import com.vpaveldm.bot.processor.ReplyKeyboardButtonProcessor;
+import com.vpaveldm.bot.processor.KeyboardButtonProcessor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -13,21 +11,29 @@ import java.util.List;
 @Component
 public class SushiBot extends TelegramLongPollingBot {
 
-    private final List<ReplyKeyboardButtonProcessor> processors;
+    private final List<KeyboardButtonProcessor> processors;
 
-    public SushiBot(List<ReplyKeyboardButtonProcessor> processors) {
+    public SushiBot(List<KeyboardButtonProcessor> processors) {
         this.processors = processors;
     }
 
     @Override
     public void onUpdateReceived(Update update) {
+        String text;
+        Message message;
         if (update.hasMessage()) {
-            Message message = update.getMessage();
-            processors
-                    .stream()
-                    .filter(processor -> processor.supports(message))
-                    .forEach(replyKeyboardButtonProcessor -> replyKeyboardButtonProcessor.processMessage(this, message));
+            text = update.getMessage().getText();
+            message = update.getMessage();
+        } else if (update.hasCallbackQuery()) {
+            text = update.getCallbackQuery().getData();
+            message = update.getCallbackQuery().getMessage();
+        } else {
+            return;
         }
+        processors
+                .stream()
+                .filter(processor -> processor.supports(text))
+                .forEach(keyboardButtonProcessor -> keyboardButtonProcessor.processMessage(this, message));
     }
 
     @Override
