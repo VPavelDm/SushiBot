@@ -63,10 +63,10 @@ public class OnCategoryMessage implements TextMessage {
         return markup;
     }
     private String prepareName(Ingredient ingredient) {
-        if (ingredient.getAdded()) {
-            return ingredient.getName() + " ✅";
-        } else {
+//        if (ingredient.getAdded()) {
+//            return ingredient.getName() + " ✅";
+//        } else {
             return ingredient.getName();
-        }
+//        }
     }
 }

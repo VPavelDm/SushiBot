@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,8 +18,11 @@ public class Ingredient {
     @GeneratedValue
     private Long id;
     private String name;
-    @Column
-    private Boolean added;
+    @ManyToMany(
+            mappedBy = "choseIngredients",
+            fetch = FetchType.EAGER
+    )
+    private Set<User> users;
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
     private Category category;

@@ -32,13 +32,11 @@ public class EntryPoint {
                 Ingredient
                         .builder()
                         .name("Лук")
-                        .added(false)
                         .category(sushi)
                         .build(),
                 Ingredient
                         .builder()
                         .name("Желток")
-                        .added(false)
                         .category(sushi)
                         .build()
         );
@@ -51,11 +49,9 @@ public class EntryPoint {
                 Ingredient.builder()
                         .name("Сахар")
                         .category(dessert)
-                        .added(false)
                         .build(),
                 Ingredient.builder()
                         .name("Белок")
-                        .added(false)
                         .category(dessert)
                         .build()
         );
