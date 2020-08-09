@@ -6,19 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class Ingredient {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Ingredient> ingredients = new ArrayList<>();
+    @Column
+    private Boolean added;
+    @ManyToOne
+    @JoinColumn(name = "ingredient_id")
+    private Category category;
 }
