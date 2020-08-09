@@ -13,7 +13,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class OnCategoriesProcessor implements KeyboardButtonProcessor {
+public class OnCategoriesProcessor implements ReplyKeyboardButtonProcessor {
 
     private final CategoryRepository repository;
 

@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 @Component
-public class StartCommandProcessor implements KeyboardButtonProcessor {
+public class StartCommandProcessor implements ReplyKeyboardButtonProcessor {
     @Override
     public boolean supports(String message) {
         return message.equals("/start");

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class OnCategoryProcessor implements KeyboardButtonProcessor {
+public class OnCategoryProcessor implements ReplyKeyboardButtonProcessor {
     private final CategoryRepository categoryRepository;
     private final IngredientRepository ingredientRepository;
 
