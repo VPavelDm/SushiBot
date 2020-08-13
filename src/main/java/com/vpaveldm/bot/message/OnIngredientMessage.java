@@ -7,13 +7,15 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 public class OnIngredientMessage implements EditMessageReplyMarkupMessage {
     private final List<Ingredient> ingredients;
+    private final Set<Ingredient> choseIngredients;
     @Override
     public EditMessageReplyMarkup get(Message message) {
-        OnCategoryMessage categoryMessage = new OnCategoryMessage(ingredients);
+        OnCategoryMessage categoryMessage = new OnCategoryMessage(ingredients, choseIngredients);
         return new EditMessageReplyMarkup()
                 .setChatId(message.getChatId())
                 .setMessageId(message.getMessageId())

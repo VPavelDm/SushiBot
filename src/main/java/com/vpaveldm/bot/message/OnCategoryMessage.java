@@ -8,15 +8,14 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class OnCategoryMessage implements TextMessage {
     private final List<Ingredient> ingredients;
+    private final Set<Ingredient> choseIngredients;
+
     @Override
     public SendMessage get(Message message) {
         return new SendMessage(message.getChatId(), Messages.ON_CATEGORY)
@@ -62,11 +61,12 @@ public class OnCategoryMessage implements TextMessage {
 
         return markup;
     }
+
     private String prepareName(Ingredient ingredient) {
-//        if (ingredient.getAdded()) {
-//            return ingredient.getName() + " ✅";
-//        } else {
+        if (choseIngredients.contains(ingredient)) {
+            return ingredient.getName() + " ✅";
+        } else {
             return ingredient.getName();
-//        }
+        }
     }
 }

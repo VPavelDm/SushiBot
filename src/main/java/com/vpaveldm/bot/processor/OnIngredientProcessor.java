@@ -1,7 +1,10 @@
 package com.vpaveldm.bot.processor;
 
+import com.vpaveldm.bot.message.OnIngredientMessage;
+import com.vpaveldm.database.model.Category;
 import com.vpaveldm.database.model.Ingredient;
 import com.vpaveldm.database.model.User;
+import com.vpaveldm.database.repository.CategoryRepository;
 import com.vpaveldm.database.repository.IngredientRepository;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -17,6 +20,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class OnIngredientProcessor implements InlineKeyboardButtonProcessor {
     private final IngredientRepository ingredientRepository;
+    private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
 
     @Override
@@ -29,12 +33,32 @@ public class OnIngredientProcessor implements InlineKeyboardButtonProcessor {
 
     @Override
     public void processMessage(AbsSender sender, CallbackQuery query) {
-        Optional<User> user = userRepository.findUserByTelegramId(query.getFrom().getId().longValue());
-        Ingredient ingredient = ingredientRepository.findAll().get(0);
-        if (user.isPresent()) {
-            Set<Ingredient> ingredientSet = user.get().getChoseIngredients();
-            ingredientSet.add(ingredient);
-            userRepository.save(user.get());
+        int dots = query.getData().indexOf(":");
+
+        String categoryName = query.getData().substring(0, dots);
+        Optional<Category> category = categoryRepository.findByName(categoryName);
+        if (!category.isPresent()) {
+            return;
         }
+
+        String ingredientName = query.getData().substring(dots + 1);
+        Optional<Ingredient> ingredient = ingredientRepository.findByCategoryAndName(category.get(), ingredientName);
+        if (!ingredient.isPresent()) {
+            return;
+        }
+
+        Optional<User> user = userRepository.findUserByTelegramId(query.getFrom().getId().longValue());
+        if (!user.isPresent()) {
+            return;
+        }
+
+        Set<Ingredient> choseIngredients = user.get().getChoseIngredients();
+        if (!choseIngredients.add(ingredient.get())) {
+            choseIngredients.remove(ingredient.get());
+        }
+        userRepository.save(user.get());
+
+        List<Ingredient> allIngredients = ingredientRepository.findAllByCategory(ingredient.get().getCategory());
+        getExecute(sender, new OnIngredientMessage(allIngredients, choseIngredients).get(query.getMessage()));
     }
 }
