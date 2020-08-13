@@ -21,4 +21,10 @@ public class Category {
     private String name;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "category",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Item> items = new ArrayList<>();
 }

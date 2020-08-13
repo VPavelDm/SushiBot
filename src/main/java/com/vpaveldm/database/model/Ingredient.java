@@ -22,6 +22,11 @@ public class Ingredient {
             fetch = FetchType.EAGER
     )
     private Set<User> users;
+    @ManyToMany(
+            mappedBy = "ingredients",
+            fetch = FetchType.EAGER
+    )
+    private Set<Item> items;
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
     private Category category;
