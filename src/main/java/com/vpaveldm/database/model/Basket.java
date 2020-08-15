@@ -27,4 +27,8 @@ public class Basket {
     public void addItem(Item item) {
         items.add(item);
     }
+
+    public boolean removeItem(Item item) {
+        return items.remove(item);
+    }
 }
