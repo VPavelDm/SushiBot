@@ -3,6 +3,7 @@ package com.vpaveldm.bot.processor;
 import com.vpaveldm.bot.message.WelcomeMessage;
 import com.vpaveldm.database.model.Basket;
 import com.vpaveldm.database.model.User;
+import com.vpaveldm.database.model.UserState;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,7 @@ public class StartCommandProcessor implements ReplyKeyboardButtonProcessor {
                 .telegramId(message.getFrom().getId().longValue())
                 .username(message.getFrom().getUserName())
                 .basket(basket)
+                .state(UserState.DEFAULT)
                 .build();
         repository.save(user);
         getExecute(sender, new WelcomeMessage().get(message));

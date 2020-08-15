@@ -32,4 +32,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "basket_id")
     private Basket basket;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 8)
+    private UserState state = UserState.DEFAULT;
 }
