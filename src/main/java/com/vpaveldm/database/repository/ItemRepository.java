@@ -9,5 +9,5 @@ import java.util.List;
 import java.util.Set;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
-    List<Item> findAllByCategoryAndIngredients(Category category, Set<Ingredient> ingredients);
+    List<Item> findAllByCategoryAndIngredientsIn(Category category, Set<Ingredient> ingredients);
 }

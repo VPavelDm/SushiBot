@@ -4,6 +4,7 @@ import com.vpaveldm.bot.constants.Messages;
 import com.vpaveldm.bot.message.OnFindMessage;
 import com.vpaveldm.database.model.*;
 import com.vpaveldm.database.repository.CategoryRepository;
+import com.vpaveldm.database.repository.IngredientRepository;
 import com.vpaveldm.database.repository.ItemRepository;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class OnFindProcessor implements InlineKeyboardButtonProcessor {
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final IngredientRepository ingredientRepository;
 
     @Override
     public boolean supports(String message) {
@@ -41,8 +43,11 @@ public class OnFindProcessor implements InlineKeyboardButtonProcessor {
             return;
         }
         Set<Ingredient> ingredients = user.get().getChoseIngredients();
+        if (ingredients.isEmpty()) {
+            ingredients.addAll(ingredientRepository.findAllByCategory(category.get()));
+        }
 
-        List<Item> items = itemRepository.findAllByCategoryAndIngredients(category.get(), ingredients);
+        List<Item> items = itemRepository.findAllByCategoryAndIngredientsIn(category.get(), ingredients);
 
         Basket basket = user.get().getBasket();
         for (Item item : items) {
