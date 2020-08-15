@@ -9,8 +9,6 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 public interface KeyboardButtonProcessor {
-    boolean supports(String message);
-
     @SneakyThrows
     default Message getExecute(AbsSender sender, SendMessage sendMessage) {
         return sender.execute(sendMessage);

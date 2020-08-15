@@ -2,6 +2,7 @@ package com.vpaveldm.bot;
 
 import com.vpaveldm.bot.processor.InlineKeyboardButtonProcessor;
 import com.vpaveldm.bot.processor.ReplyKeyboardButtonProcessor;
+import com.vpaveldm.bot.processor.TextMessageProcessor;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -17,6 +18,7 @@ public class SushiBot extends TelegramLongPollingBot {
 
     private final List<ReplyKeyboardButtonProcessor> processors;
     private final List<InlineKeyboardButtonProcessor> inlineProcessors;
+    private final List<TextMessageProcessor> textMessageProcessors;
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -25,13 +27,21 @@ public class SushiBot extends TelegramLongPollingBot {
             processors
                     .stream()
                     .filter(processor -> processor.supports(message.getText()))
-                    .forEach(processor -> processor.processMessage(this, message));
+                    .findFirst()
+                    .ifPresentOrElse(
+                            processor -> processor.processMessage(this, message),
+                            () -> textMessageProcessors
+                                    .stream()
+                                    .filter(processor -> processor.supports(message))
+                                    .findFirst()
+                                    .ifPresent(processor -> processor.processMessage(this, message)));
         } else if (update.hasCallbackQuery()) {
             CallbackQuery query = update.getCallbackQuery();
             inlineProcessors
                     .stream()
-                    .filter(processor-> processor.supports(query.getData()))
-                    .forEach(processor -> processor.processMessage(this, query));
+                    .filter(processor -> processor.supports(query.getData()))
+                    .findFirst()
+                    .ifPresent(processor -> processor.processMessage(this, query));
         }
     }
 
