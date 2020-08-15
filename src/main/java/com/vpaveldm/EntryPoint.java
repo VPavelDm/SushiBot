@@ -12,6 +12,7 @@ import org.telegram.telegrambots.ApiContextInitializer;
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -50,6 +51,7 @@ public class EntryPoint {
                         .price(2.45)
                         .category(sushi)
                         .ingredients(Collections.singleton(ingredients.get(0)))
+                        .date(new Date())
                         .build(),
                 Item.builder()
                         .name("Суши 2")
@@ -58,6 +60,7 @@ public class EntryPoint {
                         .price(1.35)
                         .category(sushi)
                         .ingredients(Collections.singleton(ingredients.get(1)))
+                        .date(new Date(121212L))
                         .build()
         );
         sushi.setIngredients(ingredients);

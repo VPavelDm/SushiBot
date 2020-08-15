@@ -7,7 +7,6 @@ import com.vpaveldm.database.repository.IngredientRepository;
 import com.vpaveldm.database.repository.ItemRepository;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
@@ -17,7 +16,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Component
 @AllArgsConstructor
 public abstract class OnSortChoseAbstractProcessor implements InlineKeyboardButtonProcessor {
     private final ItemRepository itemRepository;
