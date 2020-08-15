@@ -1,6 +1,7 @@
 package com.vpaveldm.bot;
 
 import com.vpaveldm.bot.processor.InlineKeyboardButtonProcessor;
+import com.vpaveldm.bot.processor.PhoneNumberProcessor;
 import com.vpaveldm.bot.processor.ReplyKeyboardButtonProcessor;
 import com.vpaveldm.bot.processor.TextMessageProcessor;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ public class SushiBot extends TelegramLongPollingBot {
     private final List<ReplyKeyboardButtonProcessor> processors;
     private final List<InlineKeyboardButtonProcessor> inlineProcessors;
     private final List<TextMessageProcessor> textMessageProcessors;
+    private final List<PhoneNumberProcessor> phoneNumberProcessors;
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -42,6 +44,13 @@ public class SushiBot extends TelegramLongPollingBot {
                     .filter(processor -> processor.supports(query.getData()))
                     .findFirst()
                     .ifPresent(processor -> processor.processMessage(this, query));
+        } else if (update.hasMessage() && update.getMessage().hasContact()) {
+            Message message = update.getMessage();
+            phoneNumberProcessors
+                    .stream()
+                    .filter(processor -> processor.supports(message))
+                    .findFirst()
+                    .ifPresent(processor -> processor.processMessage(this, message));
         }
     }
 
