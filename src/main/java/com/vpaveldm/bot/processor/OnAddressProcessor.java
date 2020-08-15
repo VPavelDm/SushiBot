@@ -24,6 +24,13 @@ public class OnAddressProcessor implements TextMessageProcessor {
 
     @Override
     public void processMessage(AbsSender sender, Message message) {
+        Optional<User> user = userRepository.findUserByTelegramId(message.getFrom().getId().longValue());
+        if (!user.isPresent()) {
+            return;
+        }
+        user.get().setState(UserState.DEFAULT);
+        userRepository.save(user.get());
+
         if (!message.hasText()) {
             return;
         }
