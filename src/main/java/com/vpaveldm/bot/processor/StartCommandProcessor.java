@@ -1,6 +1,7 @@
 package com.vpaveldm.bot.processor;
 
 import com.vpaveldm.bot.message.WelcomeMessage;
+import com.vpaveldm.database.model.Basket;
 import com.vpaveldm.database.model.User;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -19,10 +20,12 @@ public class StartCommandProcessor implements ReplyKeyboardButtonProcessor {
 
     @Override
     public void processMessage(AbsSender sender, Message message) {
+        Basket basket = Basket.builder().build();
         User user = User.builder()
                 .chatId(message.getChatId())
                 .telegramId(message.getFrom().getId().longValue())
                 .username(message.getFrom().getUserName())
+                .basket(basket)
                 .build();
         repository.save(user);
         getExecute(sender, new WelcomeMessage().get(message));

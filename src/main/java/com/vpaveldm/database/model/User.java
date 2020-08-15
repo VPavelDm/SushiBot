@@ -29,4 +29,7 @@ public class User {
             inverseJoinColumns = { @JoinColumn(name = "ingredient_id") }
     )
     private Set<Ingredient> choseIngredients;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "basket_id")
+    private Basket basket;
 }

@@ -30,4 +30,9 @@ public class Item {
             inverseJoinColumns = { @JoinColumn(name = "ingredient_id") }
     )
     private Set<Ingredient> ingredients;
+    @ManyToMany(
+            mappedBy = "items",
+            fetch = FetchType.EAGER
+    )
+    private Set<Basket> baskets;
 }
