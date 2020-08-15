@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
+import java.util.Optional;
+
 @Component
 @AllArgsConstructor
 public class StartCommandProcessor implements ReplyKeyboardButtonProcessor {
@@ -21,15 +23,18 @@ public class StartCommandProcessor implements ReplyKeyboardButtonProcessor {
 
     @Override
     public void processMessage(AbsSender sender, Message message) {
-        Basket basket = Basket.builder().build();
-        User user = User.builder()
-                .chatId(message.getChatId())
-                .telegramId(message.getFrom().getId().longValue())
-                .username(message.getFrom().getUserName())
-                .basket(basket)
-                .state(UserState.DEFAULT)
-                .build();
-        repository.save(user);
+        Optional<User> user = repository.findUserByTelegramId(message.getFrom().getId().longValue());
+        if (!user.isPresent()) {
+            Basket basket = Basket.builder().build();
+            user = Optional.ofNullable(User.builder()
+                    .chatId(message.getChatId())
+                    .telegramId(message.getFrom().getId().longValue())
+                    .username(message.getFrom().getUserName())
+                    .basket(basket)
+                    .state(UserState.DEFAULT)
+                    .build());
+            user.ifPresent(repository::save);
+        }
         getExecute(sender, new WelcomeMessage().get(message));
     }
 }
