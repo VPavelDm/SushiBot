@@ -2,10 +2,7 @@ package com.vpaveldm.bot.processor;
 
 import com.vpaveldm.bot.constants.Messages;
 import com.vpaveldm.bot.message.OnFindMessage;
-import com.vpaveldm.database.model.Category;
-import com.vpaveldm.database.model.Ingredient;
-import com.vpaveldm.database.model.Item;
-import com.vpaveldm.database.model.User;
+import com.vpaveldm.database.model.*;
 import com.vpaveldm.database.repository.CategoryRepository;
 import com.vpaveldm.database.repository.ItemRepository;
 import com.vpaveldm.database.repository.UserRepository;
@@ -46,8 +43,14 @@ public class OnFindProcessor implements InlineKeyboardButtonProcessor {
         Set<Ingredient> ingredients = user.get().getChoseIngredients();
 
         List<Item> items = itemRepository.findAllByCategoryAndIngredients(category.get(), ingredients);
+
+        Basket basket = user.get().getBasket();
         for (Item item : items) {
-            getExecute(sender, new OnFindMessage(item).get(query.getMessage()));
+            Long count = basket.getItems()
+                    .stream()
+                    .filter(basketItem -> basketItem.getId().equals(item.getId()))
+                    .count();
+            getExecute(sender, new OnFindMessage(item, count).get(query.getMessage()));
         }
     }
 }

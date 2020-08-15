@@ -3,6 +3,7 @@ package com.vpaveldm.bot.processor;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageCaption;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -21,6 +22,11 @@ public interface InlineKeyboardButtonProcessor {
     @SneakyThrows
     default void getExecute(AbsSender sender, EditMessageReplyMarkup editMessageReplyMarkup) {
          sender.execute(editMessageReplyMarkup);
+    }
+
+    @SneakyThrows
+    default void getExecute(AbsSender sender, EditMessageCaption editMessageCaption) {
+        sender.execute(editMessageCaption);
     }
 
     @SneakyThrows

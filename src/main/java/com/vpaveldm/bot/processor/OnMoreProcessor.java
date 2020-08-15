@@ -2,6 +2,7 @@ package com.vpaveldm.bot.processor;
 
 
 import com.vpaveldm.bot.constants.Messages;
+import com.vpaveldm.bot.message.OnAmountMessage;
 import com.vpaveldm.database.model.Basket;
 import com.vpaveldm.database.model.Item;
 import com.vpaveldm.database.model.User;
@@ -43,5 +44,11 @@ public class OnMoreProcessor implements InlineKeyboardButtonProcessor {
         }
         basket.addItem(item.get());
         userRepository.save(user.get());
+
+        Long count = basket.getItems()
+                .stream()
+                .filter(basketItem -> basketItem.getId().equals(id))
+                .count();
+        getExecute(sender, new OnAmountMessage(item.get(), count).get(query.getMessage()));
     }
 }

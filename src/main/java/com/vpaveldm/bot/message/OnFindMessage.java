@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class OnFindMessage implements PhotoMessage {
     private final Item item;
+    private final Long count;
 
     @Override
     public SendPhoto get(Message message) {
@@ -39,7 +40,8 @@ public class OnFindMessage implements PhotoMessage {
             result += "\nСостав: <i>" + item.getDescription() + "</i>";
         }
         return result
-                + "\nЦена: " + item.getPrice();
+                + "\nЦена: " + item.getPrice()
+                + "\nВ корзине: " + count;
     }
 
     private InlineKeyboardMarkup getKeyboard() {
