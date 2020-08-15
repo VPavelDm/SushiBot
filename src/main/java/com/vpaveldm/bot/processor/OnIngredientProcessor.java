@@ -47,7 +47,7 @@ public class OnIngredientProcessor implements InlineKeyboardButtonProcessor {
             return;
         }
 
-            Optional<User> user = userRepository.findUserByTelegramId(query.getFrom().getId().longValue());
+        Optional<User> user = userRepository.findUserByTelegramId(query.getFrom().getId().longValue());
         if (!user.isPresent()) {
             return;
         }

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,5 +22,9 @@ public class Basket {
             joinColumns = { @JoinColumn(name = "basket_id") },
             inverseJoinColumns = { @JoinColumn(name = "item_id") }
     )
-    private Set<Item> items;
+    private List<Item> items;
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
 }
