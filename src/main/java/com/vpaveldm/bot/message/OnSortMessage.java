@@ -28,7 +28,7 @@ public class OnSortMessage implements TextMessage {
 
         List<String> orders = Arrays.asList(
                 Messages.PRICE_UP, Messages.PRICE_DOWN,
-                Messages.NEWEST, Messages.POPULAR
+                Messages.NEWEST
         );
         List<List<InlineKeyboardButton>> keyboard = orders.stream()
                 .map(order -> new InlineKeyboardButton(order).setCallbackData(category.getName() + ":" + order))
