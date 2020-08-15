@@ -36,6 +36,10 @@ public class OnCategoriesMessage implements TextMessage {
                     return row;
                 })
                 .collect(Collectors.toList());
+        KeyboardRow backRow = new KeyboardRow();
+        KeyboardButton back = new KeyboardButton(Messages.HOME_SCREEN);
+        backRow.add(back);
+        keyboard.add(backRow);
 
         markup.setKeyboard(keyboard);
 
