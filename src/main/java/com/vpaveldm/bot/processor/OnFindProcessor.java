@@ -47,7 +47,7 @@ public class OnFindProcessor implements InlineKeyboardButtonProcessor {
             ingredients.addAll(ingredientRepository.findAllByCategory(category.get()));
         }
 
-        List<Item> items = itemRepository.findAllByCategoryAndIngredientsIn(category.get(), ingredients);
+        List<Item> items = itemRepository.findDistinctByCategoryAndIngredientsIn(category.get(), ingredients);
 
         Basket basket = user.get().getBasket();
         for (Item item : items) {
