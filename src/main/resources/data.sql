@@ -17,6 +17,12 @@ INSERT INTO INGREDIENT VALUES (7, 'Икра летучей рыбы', 1);
 INSERT INTO INGREDIENT VALUES (8, 'Угорь', 1);
 INSERT INTO INGREDIENT VALUES (9, 'Тунец', 1);
 INSERT INTO INGREDIENT VALUES (10, 'Кунжут', 1);
+INSERT INTO INGREDIENT VALUES (11, 'Рис', 2);
+INSERT INTO INGREDIENT VALUES (12, 'Цыпленок', 2);
+INSERT INTO INGREDIENT VALUES (13, 'Перец чили', 2);
+INSERT INTO INGREDIENT VALUES (14, 'Морепродукты', 2);
+INSERT INTO INGREDIENT VALUES (15, 'Орехи', 2);
+INSERT INTO INGREDIENT VALUES (16, 'Лемограсс', 2);
 
 INSERT INTO ITEM VALUES (
     1,
@@ -118,6 +124,108 @@ INSERT INTO ITEM VALUES (
     1
 );
 
+INSERT INTO ITEM VALUES (
+    11,
+    CURRENT_TIMESTAMP(),
+    'тигровые креветки, рисовая лапша с яйцом, ростки сои, тофу, кисло-сладкий тамариндовый соус, арахис, перец чили, зеленый лук, лайм',
+    'Пад Тай с тигровыми креветками(300г.)',
+    'src/main/resources/pad_tai_tiger.png',
+    13.90,
+    2
+);
+
+INSERT INTO ITEM VALUES (
+    12,
+    CURRENT_TIMESTAMP(),
+    '1 ролл(8 шт) - Филадельфия Каппа (лосось, огурец, сыр сливочный, нори, рис),
+     1 ролл(8 шт) – Фантини Маки (лосось террияки, китайская груша, сливочный сыр, соус сладкий чили, кунжут, нори, рис),
+     2 порции пад-тай с цыплёнком (филе цыпленка, рисовая лапша, яйцо, ростки сои, тофу, арахис, лайм, перец чили, зеленый лук, соус пад-тай)',
+    'Сет легкость бытия(1030г.)',
+    'src/main/resources/set_light.png',
+    28.50,
+    2
+);
+
+INSERT INTO ITEM VALUES (
+    13,
+    CURRENT_TIMESTAMP(),
+    'тигровые креветки, куриный бульон, лемонграсс, галангал, грибы шитаки, листья кафир-лайма, перец чили, кинза, паста том-ям',
+    'Том-Ям с тигровыми креветками(300г./100г.)',
+    'src/main/resources/tom_yam_tiger.png',
+    10.80,
+    2
+);
+
+INSERT INTO ITEM VALUES (
+    14,
+    CURRENT_TIMESTAMP(),
+    'куринный бульон, кокосовое молоко, лемонграсс, галангал, лисья кафир-лайма, лук-шалот, цыпленок; подается с рисом (100 г.)',
+    'Том Кха с цыпленком(280г./100г.)',
+    'src/main/resources/tom_kha.png',
+    8.80,
+    2
+);
+
+INSERT INTO ITEM VALUES (
+    15,
+    CURRENT_TIMESTAMP(),
+    'цыпленок, рис с овощами, яйцо, ростки сои, фирменный соус для тайского риса, лайм, ростки сои, перец чили, зеленый лук',
+    'Тайский рис с цыпленком(320г.)',
+    'src/main/resources/tai_rice.png',
+    9,
+    2
+);
+
+INSERT INTO ITEM VALUES (
+    16,
+    CURRENT_TIMESTAMP(),
+    'жаренный рис с морепродуктами, овощами, яйцом, ростками сои, перцем чили, зеленным луком с фирменным соусом',
+    'Тайский рис с морепродуктами(320г.)',
+    'src/main/resources/tai_rice_sea.png',
+    12,
+    2
+);
+
+INSERT INTO ITEM VALUES (
+    17,
+    CURRENT_TIMESTAMP(),
+    'цыпленок, перец, кешью, тамариндовый соус; подается с рисом',
+    'Стир-Фрай с цыпленком и кешью(280г.)',
+    'src/main/resources/stir_fri.png',
+    9.60,
+    2
+);
+
+INSERT INTO ITEM VALUES (
+    18,
+    CURRENT_TIMESTAMP(),
+    'рисовая лапша с цыпленком, яйцом, ростками сои, тофу, арахисом, лаймом, перцем чили, зеленым луком, кисло-сладким тамариндовым соусом',
+    'Пад Тай с цыпленком(300г.)',
+    'src/main/resources/pad_tai_chicken.png',
+    10.90,
+    2
+);
+
+INSERT INTO ITEM VALUES (
+    19,
+    CURRENT_TIMESTAMP(),
+    'цыпленок, стеклянная лапша с овощами, тамариндовый соус, устричный соус',
+    'Пад Кхи Мао с цыпленком(320г.)',
+    'src/main/resources/pad_khi_mao.png',
+    9.60,
+    2
+);
+
+INSERT INTO ITEM VALUES (
+    20,
+    CURRENT_TIMESTAMP(),
+    'стеклянная лапша с морепродуктами, яйцо, фирменный соус',
+    'Пад Кхи Мао с морепродуктами(340г.)',
+    'src/main/resources/pad_khi_mao_sea.png',
+    12.60,
+    2
+);
+
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 1);
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 2);
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 3);
@@ -159,3 +267,33 @@ INSERT INTO ITEM_INGREDIENTS VALUES (10, 3);
 INSERT INTO ITEM_INGREDIENTS VALUES (10, 7);
 INSERT INTO ITEM_INGREDIENTS VALUES (10, 2);
 INSERT INTO ITEM_INGREDIENTS VALUES (10, 6);
+INSERT INTO ITEM_INGREDIENTS VALUES (11, 14);
+INSERT INTO ITEM_INGREDIENTS VALUES (11, 11);
+INSERT INTO ITEM_INGREDIENTS VALUES (11, 13);
+INSERT INTO ITEM_INGREDIENTS VALUES (11, 15);
+INSERT INTO ITEM_INGREDIENTS VALUES (12, 11);
+INSERT INTO ITEM_INGREDIENTS VALUES (12, 12);
+INSERT INTO ITEM_INGREDIENTS VALUES (12, 13);
+INSERT INTO ITEM_INGREDIENTS VALUES (12, 14);
+INSERT INTO ITEM_INGREDIENTS VALUES (12, 15);
+INSERT INTO ITEM_INGREDIENTS VALUES (13, 13);
+INSERT INTO ITEM_INGREDIENTS VALUES (13, 14);
+INSERT INTO ITEM_INGREDIENTS VALUES (13, 16);
+INSERT INTO ITEM_INGREDIENTS VALUES (14, 12);
+INSERT INTO ITEM_INGREDIENTS VALUES (14, 11);
+INSERT INTO ITEM_INGREDIENTS VALUES (14, 16);
+INSERT INTO ITEM_INGREDIENTS VALUES (15, 12);
+INSERT INTO ITEM_INGREDIENTS VALUES (15, 11);
+INSERT INTO ITEM_INGREDIENTS VALUES (15, 13);
+INSERT INTO ITEM_INGREDIENTS VALUES (16, 14);
+INSERT INTO ITEM_INGREDIENTS VALUES (16, 11);
+INSERT INTO ITEM_INGREDIENTS VALUES (16, 13);
+INSERT INTO ITEM_INGREDIENTS VALUES (17, 12);
+INSERT INTO ITEM_INGREDIENTS VALUES (17, 11);
+INSERT INTO ITEM_INGREDIENTS VALUES (17, 15);
+INSERT INTO ITEM_INGREDIENTS VALUES (18, 11);
+INSERT INTO ITEM_INGREDIENTS VALUES (18, 12);
+INSERT INTO ITEM_INGREDIENTS VALUES (18, 15);
+INSERT INTO ITEM_INGREDIENTS VALUES (18, 13);
+INSERT INTO ITEM_INGREDIENTS VALUES (19, 12);
+INSERT INTO ITEM_INGREDIENTS VALUES (20, 14);
