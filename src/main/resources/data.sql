@@ -226,6 +226,86 @@ INSERT INTO ITEM VALUES (
     2
 );
 
+INSERT INTO ITEM VALUES (
+    21,
+    CURRENT_TIMESTAMP(),
+    'охлажденная Дорадо с головой; страна происхождения - Турция',
+    'Дорадо охлажденная(1кг.)',
+    'src/main/resources/dorado.png',
+    28,
+    3
+);
+
+INSERT INTO ITEM VALUES (
+    22,
+    CURRENT_TIMESTAMP(),
+    'стейки тунца',
+    'Стейки тунца(1кг.)',
+    'src/main/resources/stake.png',
+    38,
+    3
+);
+
+INSERT INTO ITEM VALUES (
+    23,
+    CURRENT_TIMESTAMP(),
+    'стейки лосося (охлаждённые); страна происхождения - Норвегия',
+    'Стейки лосося(1кг.)',
+    'src/main/resources/salmon.png',
+    38,
+    3
+);
+
+INSERT INTO ITEM VALUES (
+    24,
+    CURRENT_TIMESTAMP(),
+    'королевские креветки глубокой заморозки без головы',
+    'Креветки Ваннамей(1кг.)',
+    'src/main/resources/vannamei.png',
+    55,
+    3
+);
+
+INSERT INTO ITEM VALUES (
+    25,
+    CURRENT_TIMESTAMP(),
+    'лосось маринованный, соус манго-чили, икра летучей рыбы, авокадо, манго, ферментированный огурец, редис, бобы эдамэ, такуан, соус грин-лайт',
+    'Поке с лососем(1шт., 280г.)',
+    'src/main/resources/poke_salmon.png',
+    12.80,
+    4
+);
+
+INSERT INTO ITEM VALUES (
+    26,
+    CURRENT_TIMESTAMP(),
+    'тунец маринованный, соус манго-чили, икра летучей рыбы, авокадо, манго, ферментированный огурец, редис, бобы эдамэ, такуан, соус грин-лайт, волосы лука зеленого',
+    'Поке с тунцом(1шт., 290г.)',
+    'src/main/resources/poke_tuna.png',
+    12,
+    4
+);
+
+INSERT INTO ITEM VALUES (
+    27,
+    CURRENT_TIMESTAMP(),
+    'лосось маринованный, соус манго-маракуйя, манго, ферментированный огурец, редис, руколла, лайм, кунжут ким-чи, соус грин-лайт',
+    'Севиче с лососем Гравлакс и манго(1шт., 190г.)',
+    'src/main/resources/seviche_salmon.png',
+    12.80,
+    4
+);
+
+INSERT INTO ITEM VALUES (
+    28,
+    CURRENT_TIMESTAMP(),
+    'тигровая креветка, соус манго-маракуйя, груша террияки, манго, ферментированный огурец ,редис, кунжут ким-чи, слайсы миндаля, соус грин-лайт, соус ширачи',
+    'Севиче с тигровой креветкой(1шт., 190г.)',
+    'src/main/resources/seviche_tiger.png',
+    12.80,
+    4
+);
+
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 1);
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 2);
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 3);
