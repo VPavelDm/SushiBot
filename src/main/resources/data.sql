@@ -119,7 +119,7 @@ INSERT INTO ITEM VALUES (
     CURRENT_TIMESTAMP(),
     'тигровая креветка, сливочный сыр, икра летучей рыбы, огурец, авокадо, рис, нори',
     'Ролл Калифорния(8 шт., 240г.)',
-    'src/main/resources/cabi.png',
+    'src/main/resources/california.png',
     11.90,
     1
 );
