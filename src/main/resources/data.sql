@@ -306,6 +306,116 @@ INSERT INTO ITEM VALUES (
     4
 );
 
+INSERT INTO ITEM VALUES (
+    29,
+    CURRENT_TIMESTAMP(),
+    'лосось, рис',
+    'Нигири с лососем(1шт., 30г.)',
+    'src/main/resources/nigiri_samon.png',
+    2.40,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    30,
+    CURRENT_TIMESTAMP(),
+    'тигровая креветка, рис',
+    'Нигири с тигровой креветкой(1шт., 30г.)',
+    'src/main/resources/nigiri_tiger.png',
+    2.85,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    31,
+    CURRENT_TIMESTAMP(),
+    'томаго, соус унаги, кунжут, рис, нори',
+    'Нигири с томаго(1шт., 43г.)',
+    'src/main/resources/nigiri_tomago.png',
+    1.65,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    32,
+    CURRENT_TIMESTAMP(),
+    'тунец, рис',
+    'Нигири с тунцом(1шт., 30г.)',
+    'src/main/resources/nigiri_tuna.png',
+    2.40,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    33,
+    CURRENT_TIMESTAMP(),
+    'угорь, рис, нори, соус унаги, кунжут',
+    'Нигири с угрем(1шт., 38г.)',
+    'src/main/resources/nigiri_eel.png',
+    3.20,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    34,
+    CURRENT_TIMESTAMP(),
+    'лосось, соус спайси, рис, нори',
+    'Гункан с лососем спайси (1шт., 43г.)',
+    'src/main/resources/gunkan_salmon.png',
+    2.70,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    35,
+    CURRENT_TIMESTAMP(),
+    'морской гребешок, соус спайси, рис, нори',
+    'Гункан c гребешком спайси (1шт., 40г.)',
+    'src/main/resources/gunkan_scallop.png',
+    3.15,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    36,
+    CURRENT_TIMESTAMP(),
+    'икра летучей рыбы, рис, нори',
+    'Гункан c икрой летучей рыбы (1шт., 40г.)',
+    'src/main/resources/gunkan_caviar.png',
+    2.10,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    37,
+    CURRENT_TIMESTAMP(),
+    'икра лососевая, сыр сливочный Креметта, нори, рис',
+    'Гункан с красной икрой и сливочным сыром(1шт., 40г.)',
+    'src/main/resources/gunkan_red_cavier.png',
+    2.85,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    38,
+    CURRENT_TIMESTAMP(),
+    'салат чука, ореховый соус, кунжут, рис, нори',
+    'Гункан с чука салатом(1шт., 45г.)',
+    'src/main/resources/gunkan_chuka.png',
+    1.80,
+    5
+);
+
+INSERT INTO ITEM VALUES (
+    39,
+    CURRENT_TIMESTAMP(),
+    'тунец, соус спайси, рис, нори',
+    'Гункан с тунцом спайси(1шт., 45г.)',
+    'src/main/resources/gunkan_chuka.png',
+    2.70,
+    5
+);
+
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 1);
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 2);
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 3);
