@@ -570,6 +570,116 @@ INSERT INTO ITEM VALUES (
     7
 );
 
+INSERT INTO ITEM VALUES (
+    55,
+    CURRENT_TIMESTAMP(),
+    'насыщенный сок из свежих гранатов',
+    'Сок Villa Dini грантовый (1 л.)',
+    'src/main/resources/pomegranate.png',
+    4,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    56,
+    CURRENT_TIMESTAMP(),
+    'свежий сок с ягодным вкусом',
+    'Сок Villa Dini грейпфрутовый (1 л.)',
+    'src/main/resources/grapefruit.png',
+    4,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    57,
+    CURRENT_TIMESTAMP(),
+    'насыщенный сок из сочных томатов',
+    'Сок Villa Dini томатный (1 л.)',
+    'src/main/resources/tomato.png',
+    4,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    58,
+    CURRENT_TIMESTAMP(),
+    'сок с ярким яблочным вкусом',
+    'Сок Villa Dini яблочный (1 л.)',
+    'src/main/resources/apple.png',
+    4,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    59,
+    CURRENT_TIMESTAMP(),
+    'ананасовый сок с насыщенным фруктовым вкусом',
+    'Сок Villa Dini ананасовый (1 л.)',
+    'src/main/resources/pineapple.png',
+    4,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    60,
+    CURRENT_TIMESTAMP(),
+    'насыщенный сок из свежих апельсинов',
+    'Сок Villa Dini апельсиновый (1 л.)',
+    'src/main/resources/orange.png',
+    4,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    61,
+    CURRENT_TIMESTAMP(),
+    'свежий сок с ягодным вкусом',
+    'Сок Villa Dini вишневый (1 л.)',
+    'src/main/resources/cherry.png',
+    4,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    62,
+    CURRENT_TIMESTAMP(),
+    'напиток безалкогольный сильногазированный',
+    'Спрайт (0.5 л.)',
+    'src/main/resources/sprite.png',
+    1.90,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    63,
+    CURRENT_TIMESTAMP(),
+    'напиток безалкогольный сильногазированный',
+    'Фанта (0.5 л.)',
+    'src/main/resources/fanta.png',
+    1.90,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    64,
+    CURRENT_TIMESTAMP(),
+    'напиток безалкогольный сильногазированный',
+    'Кока-кола (0.5 л.)',
+    'src/main/resources/coca_cola.png',
+    1.90,
+    8
+);
+
+INSERT INTO ITEM VALUES (
+    65,
+    CURRENT_TIMESTAMP(),
+    'напиток безалкогольный негазированный',
+    'Бонаква (0.5 л.)',
+    'src/main/resources/bonaqua.png',
+    1.40,
+    8
+);
+
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 1);
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 2);
 INSERT INTO ITEM_INGREDIENTS VALUES (1, 3);
