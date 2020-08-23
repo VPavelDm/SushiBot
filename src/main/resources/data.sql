@@ -311,7 +311,7 @@ INSERT INTO ITEM VALUES (
     CURRENT_TIMESTAMP(),
     'лосось, рис',
     'Нигири с лососем(1шт., 30г.)',
-    'src/main/resources/nigiri_samon.png',
+    'src/main/resources/nigiri_salmon.png',
     2.40,
     5
 );
@@ -383,7 +383,7 @@ INSERT INTO ITEM VALUES (
     'Гункан c икрой летучей рыбы (1шт., 40г.)',
     'src/main/resources/gunkan_caviar.png',
     2.10,
-    5
+    5h
 );
 
 INSERT INTO ITEM VALUES (
@@ -411,7 +411,7 @@ INSERT INTO ITEM VALUES (
     CURRENT_TIMESTAMP(),
     'тунец, соус спайси, рис, нори',
     'Гункан с тунцом спайси(1шт., 45г.)',
-    'src/main/resources/gunkan_chuka.png',
+    'src/main/resources/gunkan_tuna.png',
     2.70,
     5
 );
