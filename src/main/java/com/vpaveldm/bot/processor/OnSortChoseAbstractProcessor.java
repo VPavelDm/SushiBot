@@ -42,7 +42,7 @@ public abstract class OnSortChoseAbstractProcessor implements InlineKeyboardButt
             choseIngredients.addAll(ingredientRepository.findAllByCategory(category.get()));
         }
 
-        List<Item> items = itemRepository.findAllByCategoryAndIngredientsIn(category.get(), choseIngredients)
+        List<Item> items = itemRepository.findDistinctByCategoryAndIngredientsIn(category.get(), choseIngredients)
                 .stream()
                 .sorted(getComparator())
                 .collect(Collectors.toList());
