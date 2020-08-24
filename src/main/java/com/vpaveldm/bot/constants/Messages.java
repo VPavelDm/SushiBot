@@ -16,7 +16,7 @@ public class Messages {
     public static String NEWEST = "Сначала новые";
     public static String MORE = "Добавить";
     public static String LESS = "Убрать";
-    public static String HOME_SCREEN = "В";
+    public static String HOME_SCREEN = "Вернуться в главное меню";
     public static String HOME_SCREEN_MESSAGE = "Можете добавить в корзину товары, для этого "
             + "выберите кнопку \""
             + Messages.CATEGORIES

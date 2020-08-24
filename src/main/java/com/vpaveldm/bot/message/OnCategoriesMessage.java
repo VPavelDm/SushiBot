@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,15 +28,20 @@ public class OnCategoriesMessage implements TextMessage {
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
         markup.setResizeKeyboard(true);
 
-        List<KeyboardRow> keyboard = categories
+        List<KeyboardButton> buttons = categories
                 .stream()
                 .map(category -> new KeyboardButton(category.getName()))
-                .map(button -> {
-                    KeyboardRow row = new KeyboardRow();
-                    row.add(button);
-                    return row;
-                })
                 .collect(Collectors.toList());
+
+        List<KeyboardRow> keyboard = new ArrayList<>();
+        for (int i = 0; i < buttons.size(); i += 2) {
+            KeyboardRow row = new KeyboardRow();
+            row.add(buttons.get(i));
+            if (i + 1 < buttons.size()) {
+                row.add(buttons.get(i + 1));
+            }
+            keyboard.add(row);
+        }
         KeyboardRow backRow = new KeyboardRow();
         KeyboardButton back = new KeyboardButton(Messages.HOME_SCREEN);
         backRow.add(back);
