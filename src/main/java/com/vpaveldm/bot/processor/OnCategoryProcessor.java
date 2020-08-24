@@ -1,11 +1,11 @@
 package com.vpaveldm.bot.processor;
 
 import com.vpaveldm.bot.message.OnCategoryMessage;
-import com.vpaveldm.database.model.Category;
-import com.vpaveldm.database.model.Ingredient;
-import com.vpaveldm.database.model.User;
+import com.vpaveldm.bot.message.OnFindMessage;
+import com.vpaveldm.database.model.*;
 import com.vpaveldm.database.repository.CategoryRepository;
 import com.vpaveldm.database.repository.IngredientRepository;
+import com.vpaveldm.database.repository.ItemRepository;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -22,6 +22,7 @@ public class OnCategoryProcessor implements ReplyKeyboardButtonProcessor {
     private final CategoryRepository categoryRepository;
     private final IngredientRepository ingredientRepository;
     private final UserRepository userRepository;
+    private final ItemRepository itemRepository;
 
     @Override
     public boolean supports(String message) {
@@ -33,10 +34,26 @@ public class OnCategoryProcessor implements ReplyKeyboardButtonProcessor {
         List<Category> categories = categoryRepository.findAllByName(message.getText());
         Category category = categories.get(0);
         List<Ingredient> ingredients = ingredientRepository.findAllByCategory(category);
-        Set<Ingredient> choseIngredients = userRepository
-                .findUserByTelegramId(message.getFrom().getId().longValue())
-                .map(User::getChoseIngredients)
-                .orElse(Collections.emptySet());
-        getExecute(sender, new OnCategoryMessage(ingredients, choseIngredients).get(message));
+        if (ingredients.isEmpty()) {
+            userRepository.findUserByTelegramId(message.getFrom().getId().longValue())
+                    .ifPresent(user -> {
+                        List<Item> items = itemRepository.findDistinctByCategory(category);
+
+                        Basket basket = user.getBasket();
+                        for (Item item : items) {
+                            Long count = basket.getItems()
+                                    .stream()
+                                    .filter(basketItem -> basketItem.getId().equals(item.getId()))
+                                    .count();
+                            getExecute(sender, new OnFindMessage(item, count).get(message));
+                        }
+                    });
+        } else {
+            Set<Ingredient> choseIngredients = userRepository
+                    .findUserByTelegramId(message.getFrom().getId().longValue())
+                    .map(User::getChoseIngredients)
+                    .orElse(Collections.emptySet());
+            getExecute(sender, new OnCategoryMessage(ingredients, choseIngredients).get(message));
+        }
     }
 }

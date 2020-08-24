@@ -10,4 +10,5 @@ import java.util.Set;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findDistinctByCategoryAndIngredientsIn(Category category, Set<Ingredient> ingredients);
+    List<Item> findDistinctByCategory(Category category);
 }
