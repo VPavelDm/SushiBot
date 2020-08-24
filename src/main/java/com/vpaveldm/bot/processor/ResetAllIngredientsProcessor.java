@@ -1,6 +1,6 @@
 package com.vpaveldm.bot.processor;
 
-import com.vpaveldm.bot.constants.Messages;
+import com.vpaveldm.bot.constants.MessageIDs;
 import com.vpaveldm.bot.message.OnIngredientMessage;
 import com.vpaveldm.database.model.Category;
 import com.vpaveldm.database.model.Ingredient;
@@ -26,7 +26,7 @@ public class ResetAllIngredientsProcessor implements InlineKeyboardButtonProcess
 
     @Override
     public boolean supports(String message) {
-        return message.endsWith(Messages.RESET_INGREDIENTS);
+        return message.endsWith(MessageIDs.RESET_INGREDIENTS.getID());
     }
 
     @Override

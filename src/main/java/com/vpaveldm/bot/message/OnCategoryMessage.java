@@ -1,5 +1,6 @@
 package com.vpaveldm.bot.message;
 
+import com.vpaveldm.bot.constants.MessageIDs;
 import com.vpaveldm.bot.constants.Messages;
 import com.vpaveldm.database.model.Ingredient;
 import lombok.AllArgsConstructor;
@@ -45,13 +46,13 @@ public class OnCategoryMessage implements TextMessage {
         }
 
         InlineKeyboardButton all = new InlineKeyboardButton(Messages.ALL_INGREDIENTS)
-                .setCallbackData(category + ":" + Messages.ALL_INGREDIENTS);
+                .setCallbackData(category + ":" + MessageIDs.ALL_INGREDIENTS.getID());
         InlineKeyboardButton reset = new InlineKeyboardButton(Messages.RESET_INGREDIENTS)
-                .setCallbackData(category + ":" + Messages.RESET_INGREDIENTS);
+                .setCallbackData(category + ":" + MessageIDs.RESET_INGREDIENTS.getID());
         InlineKeyboardButton find = new InlineKeyboardButton(Messages.FIND)
-                .setCallbackData(category + ":" + Messages.FIND);
+                .setCallbackData(category + ":" + MessageIDs.FIND.getID());
         InlineKeyboardButton sort = new InlineKeyboardButton(Messages.SORT_ORDER_SETTINGS)
-                .setCallbackData(category + ":" + Messages.SORT_ORDER_SETTINGS);
+                .setCallbackData(category + ":" + MessageIDs.SORT_ORDER_SETTINGS.getID());
 
         keyboard.add(Arrays.asList(all, reset));
         keyboard.add(Collections.singletonList(find));

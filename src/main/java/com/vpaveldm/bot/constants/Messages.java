@@ -6,9 +6,9 @@ public class Messages {
     public static String BASKET = "Корзина";
     public static String ON_CATEGORIES = "Сча нужно выбрать категорию";
     public static String ON_CATEGORY = "Сча нужно выбрать ингредиенты";
-    public static String ALL_INGREDIENTS = "В";
-    public static String RESET_INGREDIENTS = "У";
-    public static String SORT_ORDER_SETTINGS = "Н";
+    public static String ALL_INGREDIENTS = "Все ингредиенты";
+    public static String RESET_INGREDIENTS = "Удалить все ингредиенты";
+    public static String SORT_ORDER_SETTINGS = "Настроить сортировку товаров";
     public static String FIND = "Найти";
     public static String ON_SORT_ORDER = "А сейчас давайте настроим сортировку товаров";
     public static String PRICE_UP = "Цена по возрастанию";

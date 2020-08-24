@@ -1,6 +1,6 @@
 package com.vpaveldm.bot.processor;
 
-import com.vpaveldm.bot.constants.Messages;
+import com.vpaveldm.bot.constants.MessageIDs;
 import com.vpaveldm.bot.message.OnFindMessage;
 import com.vpaveldm.database.model.*;
 import com.vpaveldm.database.repository.CategoryRepository;
@@ -26,7 +26,7 @@ public class OnFindProcessor implements InlineKeyboardButtonProcessor {
 
     @Override
     public boolean supports(String message) {
-        return message.endsWith(Messages.FIND);
+        return message.endsWith(MessageIDs.FIND.getID());
     }
 
     @Override

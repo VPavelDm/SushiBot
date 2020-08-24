@@ -1,6 +1,6 @@
 package com.vpaveldm.bot.processor;
 
-import com.vpaveldm.bot.constants.Messages;
+import com.vpaveldm.bot.constants.MessageIDs;
 import com.vpaveldm.bot.message.OnSortMessage;
 import com.vpaveldm.database.model.Category;
 import com.vpaveldm.database.repository.CategoryRepository;
@@ -17,7 +17,7 @@ public class OnSortProcessor implements InlineKeyboardButtonProcessor {
     private final CategoryRepository categoryRepository;
     @Override
     public boolean supports(String message) {
-        return message.endsWith(Messages.SORT_ORDER_SETTINGS);
+        return message.endsWith(MessageIDs.SORT_ORDER_SETTINGS.getID());
     }
 
     @Override
