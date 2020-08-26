@@ -4,7 +4,6 @@ import com.vpaveldm.bot.message.OnCategoryMessage;
 import com.vpaveldm.bot.message.OnFindMessage;
 import com.vpaveldm.database.model.*;
 import com.vpaveldm.database.repository.CategoryRepository;
-import com.vpaveldm.database.repository.IngredientRepository;
 import com.vpaveldm.database.repository.ItemRepository;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -12,15 +11,16 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
 public class OnCategoryProcessor implements ReplyKeyboardButtonProcessor {
     private final CategoryRepository categoryRepository;
-    private final IngredientRepository ingredientRepository;
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;
 
@@ -31,29 +31,44 @@ public class OnCategoryProcessor implements ReplyKeyboardButtonProcessor {
 
     @Override
     public void processMessage(AbsSender sender, Message message) {
-        List<Category> categories = categoryRepository.findAllByName(message.getText());
-        Category category = categories.get(0);
-        List<Ingredient> ingredients = ingredientRepository.findAllByCategory(category);
+        if (!message.hasText()) {
+            return;
+        }
+        Optional<Category> category = categoryRepository.findByName(message.getText());
+        if (!category.isPresent()) {
+            return;
+        }
+        Set<Item> items = itemRepository.findByCategory(category.get());
+        Set<Ingredient> ingredients = items
+                .stream()
+                .map(Item::getIngredients)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet());
         if (ingredients.isEmpty()) {
-            userRepository.findUserByTelegramId(message.getFrom().getId().longValue())
-                    .ifPresent(user -> {
-                        List<Item> items = itemRepository.findDistinctByCategory(category);
-
-                        Basket basket = user.getBasket();
-                        for (Item item : items) {
-                            Long count = basket.getItems()
-                                    .stream()
-                                    .filter(basketItem -> basketItem.getId().equals(item.getId()))
-                                    .count();
-                            getExecute(sender, new OnFindMessage(item, count).get(message));
-                        }
-                    });
+            Set<BasketItem> basketItems = userRepository.findUserByTelegramId(message.getFrom().getId().longValue())
+                    .map(User::getBasket)
+                    .map(Basket::getBasketItems)
+                    .orElse(Collections.emptySet());
+            for (Item item : items) {
+                Long count = basketItems
+                        .stream()
+                        .filter(basketItem -> basketItem.getItem().equals(item))
+                        .findFirst()
+                        .map(BasketItem::getCount)
+                        .orElse(0L);
+                getExecute(sender, new OnFindMessage(item, count).get(message));
+            }
         } else {
             Set<Ingredient> choseIngredients = userRepository
                     .findUserByTelegramId(message.getFrom().getId().longValue())
                     .map(User::getChoseIngredients)
                     .orElse(Collections.emptySet());
-            getExecute(sender, new OnCategoryMessage(ingredients, choseIngredients).get(message));
+            OnCategoryMessage categoryMessage = new OnCategoryMessage(
+                    ingredients,
+                    choseIngredients,
+                    category.get().getName()
+            );
+            getExecute(sender, categoryMessage.get(message));
         }
     }
 }

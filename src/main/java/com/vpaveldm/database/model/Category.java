@@ -5,9 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 @Data
@@ -19,12 +19,4 @@ public class Category {
     @GeneratedValue
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Ingredient> ingredients = new ArrayList<>();
-    @OneToMany(
-            mappedBy = "category",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Item> items = new ArrayList<>();
 }

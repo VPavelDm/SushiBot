@@ -23,14 +23,8 @@ public class User {
     @Column(unique = true)
     private Long chatId;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_chose_ingredients",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "ingredient_id") }
-    )
     private Set<Ingredient> choseIngredients;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "basket_id")
     private Basket basket;
     @Enumerated(EnumType.STRING)
     @Column(length = 8)

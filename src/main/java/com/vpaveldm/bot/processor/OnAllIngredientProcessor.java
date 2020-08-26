@@ -4,25 +4,27 @@ import com.vpaveldm.bot.constants.MessageIDs;
 import com.vpaveldm.bot.message.OnIngredientMessage;
 import com.vpaveldm.database.model.Category;
 import com.vpaveldm.database.model.Ingredient;
+import com.vpaveldm.database.model.Item;
 import com.vpaveldm.database.model.User;
 import com.vpaveldm.database.repository.CategoryRepository;
-import com.vpaveldm.database.repository.IngredientRepository;
+import com.vpaveldm.database.repository.ItemRepository;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
 public class OnAllIngredientProcessor implements InlineKeyboardButtonProcessor {
-    private final IngredientRepository ingredientRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final ItemRepository itemRepository;
 
     @Override
     public boolean supports(String message) {
@@ -44,10 +46,14 @@ public class OnAllIngredientProcessor implements InlineKeyboardButtonProcessor {
         }
 
         Set<Ingredient> choseIngredients = user.get().getChoseIngredients();
-        List<Ingredient> ingredients = ingredientRepository.findAllByCategory(category.get());
+        Set<Ingredient> ingredients = itemRepository.findByCategory(category.get())
+                .stream()
+                .map(Item::getIngredients)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet());
         choseIngredients.addAll(ingredients);
         userRepository.save(user.get());
 
-        getExecute(sender, new OnIngredientMessage(ingredients, choseIngredients).get(query.getMessage()));
+        getExecute(sender, new OnIngredientMessage(ingredients, choseIngredients, categoryName).get(query.getMessage()));
     }
 }

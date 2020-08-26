@@ -22,18 +22,10 @@ public class Item {
     private Double price;
     @Temporal(TemporalType.DATE)
     private Date date;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Category category;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "item_ingredients",
-            joinColumns = { @JoinColumn(name = "item_id") },
-            inverseJoinColumns = { @JoinColumn(name = "ingredient_id") }
-    )
     private Set<Ingredient> ingredients;
-    @ManyToMany(
-            mappedBy = "items",
-            fetch = FetchType.EAGER
-    )
-    private Set<Basket> baskets;
+    @OneToMany(mappedBy = "item")
+    private Set<BasketItem> basketItems;
 }

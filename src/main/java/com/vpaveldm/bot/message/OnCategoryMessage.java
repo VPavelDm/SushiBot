@@ -14,8 +14,9 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class OnCategoryMessage implements TextMessage {
-    private final List<Ingredient> ingredients;
+    private final Set<Ingredient> ingredients;
     private final Set<Ingredient> choseIngredients;
+    private final String category;
 
     @Override
     public SendMessage get(Message message) {
@@ -29,7 +30,6 @@ public class OnCategoryMessage implements TextMessage {
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
-        String category = ingredients.get(0).getCategory().getName();
         List<InlineKeyboardButton> buttons = ingredients
                 .stream()
                 .map(ingredient -> new InlineKeyboardButton(prepareName(ingredient))

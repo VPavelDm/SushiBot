@@ -3,8 +3,10 @@ package com.vpaveldm.bot.processor;
 import com.vpaveldm.bot.constants.Messages;
 import com.vpaveldm.bot.message.OnAmountMessage;
 import com.vpaveldm.database.model.Basket;
+import com.vpaveldm.database.model.BasketItem;
 import com.vpaveldm.database.model.Item;
 import com.vpaveldm.database.model.User;
+import com.vpaveldm.database.repository.BasketRepository;
 import com.vpaveldm.database.repository.ItemRepository;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -19,6 +21,7 @@ import java.util.Optional;
 public class OnLessProcessor implements InlineKeyboardButtonProcessor {
     private final UserRepository userRepository;
     private final ItemRepository repository;
+    private final BasketRepository basketRepository;
 
     @Override
     public boolean supports(String message) {
@@ -41,15 +44,20 @@ public class OnLessProcessor implements InlineKeyboardButtonProcessor {
         if (!item.isPresent()) {
             return;
         }
-        if (!basket.removeItem(item.get())) {
+        Optional<BasketItem> basketItem = basket.getBasketItems()
+                .stream()
+                .filter(bi -> bi.getItem().equals(item.get()))
+                .findFirst();
+        if (!basketItem.isPresent()) {
             return;
         }
-        userRepository.save(user.get());
-
-        Long count = basket.getItems()
-                .stream()
-                .filter(basketItem -> basketItem.getId().equals(id))
-                .count();
-        getExecute(sender, new OnAmountMessage(item.get(), count).get(query.getMessage()));
+        long currentCount = basketItem.get().getCount();
+        if (currentCount <= 0) {
+            return;
+        }
+        currentCount -= 1;
+        basketItem.get().setCount(currentCount);
+        basketRepository.save(basket);
+        getExecute(sender, new OnAmountMessage(item.get(), currentCount).get(query.getMessage()));
     }
 }

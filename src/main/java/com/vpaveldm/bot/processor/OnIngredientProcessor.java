@@ -3,18 +3,22 @@ package com.vpaveldm.bot.processor;
 import com.vpaveldm.bot.message.OnIngredientMessage;
 import com.vpaveldm.database.model.Category;
 import com.vpaveldm.database.model.Ingredient;
+import com.vpaveldm.database.model.Item;
 import com.vpaveldm.database.model.User;
 import com.vpaveldm.database.repository.CategoryRepository;
 import com.vpaveldm.database.repository.IngredientRepository;
+import com.vpaveldm.database.repository.ItemRepository;
 import com.vpaveldm.database.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -22,6 +26,7 @@ public class OnIngredientProcessor implements InlineKeyboardButtonProcessor {
     private final IngredientRepository ingredientRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final ItemRepository itemRepository;
 
     @Override
     public boolean supports(String message) {
@@ -42,7 +47,16 @@ public class OnIngredientProcessor implements InlineKeyboardButtonProcessor {
         }
 
         String ingredientName = query.getData().substring(dots + 1);
-        Optional<Ingredient> ingredient = ingredientRepository.findByCategoryAndName(category.get(), ingredientName);
+        Set<Item> items = itemRepository.findByCategory(category.get());
+        Set<Ingredient> allIngredients = items
+                .stream()
+                .map(Item::getIngredients)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet());
+        Optional<Ingredient> ingredient = allIngredients
+                .stream()
+                .filter(fIngredient -> fIngredient.getName().equals(ingredientName))
+                .findFirst();
         if (!ingredient.isPresent()) {
             return;
         }
@@ -58,7 +72,6 @@ public class OnIngredientProcessor implements InlineKeyboardButtonProcessor {
         }
         userRepository.save(user.get());
 
-        List<Ingredient> allIngredients = ingredientRepository.findAllByCategory(ingredient.get().getCategory());
-        getExecute(sender, new OnIngredientMessage(allIngredients, choseIngredients).get(query.getMessage()));
+        getExecute(sender, new OnIngredientMessage(allIngredients, choseIngredients, categoryName).get(query.getMessage()));
     }
 }

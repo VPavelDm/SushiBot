@@ -6,16 +6,16 @@ import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageRe
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
-import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
 public class OnIngredientMessage implements EditMessageReplyMarkupMessage {
-    private final List<Ingredient> ingredients;
+    private final Set<Ingredient> ingredients;
     private final Set<Ingredient> choseIngredients;
+    private final String category;
     @Override
     public EditMessageReplyMarkup get(Message message) {
-        OnCategoryMessage categoryMessage = new OnCategoryMessage(ingredients, choseIngredients);
+        OnCategoryMessage categoryMessage = new OnCategoryMessage(ingredients, choseIngredients, category);
         return new EditMessageReplyMarkup()
                 .setChatId(message.getChatId())
                 .setMessageId(message.getMessageId())

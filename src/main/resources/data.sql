@@ -7,25 +7,25 @@ INSERT INTO CATEGORY VALUES (6, 'Барбекю');
 INSERT INTO CATEGORY VALUES (7, 'Гарниры и соусы');
 INSERT INTO CATEGORY VALUES (8, 'Напитки');
 
-INSERT INTO INGREDIENT VALUES (1, 'Лосось', 1);
-INSERT INTO INGREDIENT VALUES (2, 'Авокадо', 1);
-INSERT INTO INGREDIENT VALUES (3, 'Сливочный сыр', 1);
-INSERT INTO INGREDIENT VALUES (4, 'Тигровая креветка', 1);
-INSERT INTO INGREDIENT VALUES (5, 'Такуан', 1);
-INSERT INTO INGREDIENT VALUES (6, 'Огурец', 1);
-INSERT INTO INGREDIENT VALUES (7, 'Икра летучей рыбы', 1);
-INSERT INTO INGREDIENT VALUES (8, 'Угорь', 1);
-INSERT INTO INGREDIENT VALUES (9, 'Тунец', 1);
-INSERT INTO INGREDIENT VALUES (10, 'Кунжут', 1);
-INSERT INTO INGREDIENT VALUES (11, 'Рис', 2);
-INSERT INTO INGREDIENT VALUES (12, 'Цыпленок', 2);
-INSERT INTO INGREDIENT VALUES (13, 'Перец чили', 2);
-INSERT INTO INGREDIENT VALUES (14, 'Морепродукты', 2);
-INSERT INTO INGREDIENT VALUES (15, 'Орехи', 2);
-INSERT INTO INGREDIENT VALUES (16, 'Лемограсс', 2);
-INSERT INTO INGREDIENT VALUES (17, 'Лосось', 6);
-INSERT INTO INGREDIENT VALUES (18, 'Тунец', 6);
-INSERT INTO INGREDIENT VALUES (19, 'Креветки', 6);
+INSERT INTO INGREDIENT VALUES (1, 'Лосось');
+INSERT INTO INGREDIENT VALUES (2, 'Авокадо');
+INSERT INTO INGREDIENT VALUES (3, 'Сливочный сыр');
+INSERT INTO INGREDIENT VALUES (4, 'Тигровая креветка');
+INSERT INTO INGREDIENT VALUES (5, 'Такуан');
+INSERT INTO INGREDIENT VALUES (6, 'Огурец');
+INSERT INTO INGREDIENT VALUES (7, 'Икра летучей рыбы');
+INSERT INTO INGREDIENT VALUES (8, 'Угорь');
+INSERT INTO INGREDIENT VALUES (9, 'Тунец');
+INSERT INTO INGREDIENT VALUES (10, 'Кунжут');
+INSERT INTO INGREDIENT VALUES (11, 'Рис');
+INSERT INTO INGREDIENT VALUES (12, 'Цыпленок');
+INSERT INTO INGREDIENT VALUES (13, 'Перец чили');
+INSERT INTO INGREDIENT VALUES (14, 'Морепродукты');
+INSERT INTO INGREDIENT VALUES (15, 'Орехи');
+INSERT INTO INGREDIENT VALUES (16, 'Лемограсс');
+INSERT INTO INGREDIENT VALUES (17, 'Лосось');
+INSERT INTO INGREDIENT VALUES (18, 'Тунец');
+INSERT INTO INGREDIENT VALUES (19, 'Креветки');
 
 INSERT INTO ITEM VALUES (
     1,
@@ -38,13 +38,14 @@ INSERT INTO ITEM VALUES (
 );
 
 INSERT INTO ITEM VALUES (
-    2,
-    CURRENT_TIMESTAMP(),
+    2, --  id
+    CURRENT_TIMESTAMP(), -- date
+    -- description
     'тигровая креветка, авокадо, огурец, томаго, соус унаги, кунжут белый и черный, сыр сливочный Креметта, такуан, нори, рис',
-    'Ролл Колумбия (8 шт., 250 г.)',
-    'src/main/resources/columbia.png',
-    8.80,
-    1
+    'Ролл Колумбия (8 шт., 250 г.)', -- name
+    'src/main/resources/columbia.png', -- photo
+    8.80, -- price
+    1 -- category
 );
 
 INSERT INTO ITEM VALUES (

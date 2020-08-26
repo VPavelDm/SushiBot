@@ -2,8 +2,9 @@ package com.vpaveldm.database.model;
 
 import lombok.*;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 @Data
@@ -11,23 +12,10 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-@ToString(exclude = "users")
+@ToString
 public class Ingredient {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    @ManyToMany(
-            mappedBy = "choseIngredients",
-            fetch = FetchType.EAGER
-    )
-    private Set<User> users;
-    @ManyToMany(
-            mappedBy = "ingredients",
-            fetch = FetchType.EAGER
-    )
-    private Set<Item> items;
-    @ManyToOne
-    @JoinColumn(name = "ingredient_id")
-    private Category category;
 }

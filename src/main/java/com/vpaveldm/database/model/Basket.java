@@ -1,34 +1,23 @@
 package com.vpaveldm.database.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Basket {
     @Id @GeneratedValue
     private Long id;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "basket_items",
-            joinColumns = { @JoinColumn(name = "basket_id") },
-            inverseJoinColumns = { @JoinColumn(name = "item_id") }
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "basket",
+            cascade = CascadeType.ALL
     )
-    private List<Item> items;
-
-    public void addItem(Item item) {
-        items.add(item);
-    }
-
-    public boolean removeItem(Item item) {
-        return items.remove(item);
-    }
+    private Set<BasketItem> basketItems;
 }
