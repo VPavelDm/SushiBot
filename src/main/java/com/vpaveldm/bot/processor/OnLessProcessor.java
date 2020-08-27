@@ -47,17 +47,14 @@ public class OnLessProcessor implements InlineKeyboardButtonProcessor {
         Optional<BasketItem> basketItem = basket.getBasketItems()
                 .stream()
                 .filter(bi -> bi.getItem().equals(item.get()))
+                .filter(bi -> bi.getCount() > 0)
                 .findFirst();
         if (!basketItem.isPresent()) {
             return;
         }
-        long currentCount = basketItem.get().getCount();
-        if (currentCount <= 0) {
-            return;
-        }
-        currentCount -= 1;
-        basketItem.get().setCount(currentCount);
+        long count = basketItem.get().getCount() - 1;
+        basketItem.get().setCount(count);
         basketRepository.save(basket);
-        getExecute(sender, new OnAmountMessage(item.get(), currentCount).get(query.getMessage()));
+        getExecute(sender, new OnAmountMessage(item.get(), count).get(query.getMessage()));
     }
 }
