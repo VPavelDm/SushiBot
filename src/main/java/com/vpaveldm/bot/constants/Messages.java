@@ -34,4 +34,5 @@ public class Messages {
             "Вы предоставили";
     public static String ADDRESS_ENTERED_MESSAGE = "Мы приняли Ваш заказ. Он будет доставлен в течение 1-2 часов " +
             "по адресу: ";
+    public static String MAKE_ORDER_PRICE = "Вы набрали товара на общую сумму = ";
 }
